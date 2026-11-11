@@ -1,15 +1,16 @@
+using Juegoteca.Biblioteca.Modelos;
+
 namespace Juegoteca.Biblioteca.Interfaces;
 
 public interface IGestorVideojuegos
 {
-    IReadOnlyList<IVideojuego> JuegosDisponibles { get; }
-
-    void AgregarJuego(IVideojuego juego);
-    bool EliminarJuego(IVideojuego juego);
+    List<Videojuego> JuegosDisponibles { get; }
+    void AgregarJuego(Videojuego juego);
+    bool EliminarJuego(Videojuego juego);
     bool EliminarPorIndice(int indice);
-    IReadOnlyList<IVideojuego> BuscarPorTitulo(string texto);
+    List<Videojuego> BuscarPorTitulo(string texto);
     void LimpiarCatalogo();
-    void QuickSort(List<IVideojuego> lista);
-    List<IVideojuego> MergeSort(List<IVideojuego> lista);
+    void QuickSort(List<Videojuego> lista);
+    List<Videojuego> MergeSort(List<Videojuego> lista);
     int BusquedaBinaria(string titulo);
 }

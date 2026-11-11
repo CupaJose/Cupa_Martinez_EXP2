@@ -1,6 +1,8 @@
+using Juegoteca.Biblioteca.Modelos;
+
 namespace Juegoteca.Biblioteca.Interfaces;
 
 public interface IExportador
 {
-    void Exportar(string nombreUsuario, IEnumerable<IVideojuego> coleccion, string rutaArchivo);
+    void ExportarATxt(Usuario usuario, string rutaArchivo);
 }
