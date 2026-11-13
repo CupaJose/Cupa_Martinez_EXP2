@@ -5,7 +5,6 @@ Nombre Integrantes:
 - Cupa Sepúlveda Jose Clemente
 - Martínez Torres Emilio Gael
 
-
-  Nombre en Github:
-  -CupaJose
-  -emiliogael1590
+Nombre en Github:
+- CupaJose
+- emiliogael1590
