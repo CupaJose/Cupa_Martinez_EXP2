@@ -60,7 +60,6 @@ while (!salir)
 
                 if (algoritmo == 1)
                 {
-                    gestor.QuickSort(juegos);
                     int total = servicio.OrdenarColeccionYCalcularHoras(usuarioActual, coleccionActual);
                     Console.WriteLine($"Colección ordenada con QuickSort. Total: {total} horas.");
                 }
@@ -182,7 +181,7 @@ static string LeerTexto(string mensaje, bool permitirVacio = false)
         Console.Write(mensaje);
         string? entrada = Console.ReadLine();
 
-        if (permitirVacio && entrada == null)
+        if (permitirVacio && string.IsNullOrWhiteSpace(entrada))
             return "";
 
         if (!string.IsNullOrWhiteSpace(entrada))
