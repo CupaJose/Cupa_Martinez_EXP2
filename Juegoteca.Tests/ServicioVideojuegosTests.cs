@@ -107,4 +107,14 @@ public class ServicioVideojuegosTests
         Assert.Same(usuario, exportador.UsuarioRecibido);
         Assert.Equal("salida.txt", exportador.RutaRecibida);
     }
+    [Fact]
+    public void ExportarColecciones_UsuarioNulo_LanzaArgumentNullException()
+    {
+        ServicioVideojuegos servicio = new ServicioVideojuegos(
+            new GestorVideojuegos(),
+            new ExportadorPrueba());
+
+        Assert.Throws<ArgumentNullException>(
+            () => servicio.ExportarColecciones(null!, "salida.txt"));
+    }
 }
