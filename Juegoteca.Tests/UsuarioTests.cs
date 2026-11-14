@@ -104,4 +104,42 @@ public class UsuarioTests
         ana.CrearColeccion("Pendientes");
         Assert.Empty(luis.Colecciones);
     }
+
+    [Fact]
+    public void MostrarColecciones_UsuarioConColecciones_MuestraContenido()
+    {
+        Usuario usuario = new Usuario("Ana");
+        usuario.CrearColeccion("Pendientes");
+        usuario.AgregarJuegoAColeccion(
+            "Pendientes",
+            new Videojuego("Celeste", "Maddy Makes Games", 8));
+
+        TextWriter salidaOriginal = Console.Out;
+        StringWriter salida = new StringWriter();
+
+        try
+        {
+            Console.SetOut(salida);
+
+            usuario.MostrarColecciones();
+
+            Assert.Contains("Pendientes", salida.ToString());
+            Assert.Contains("Celeste", salida.ToString());
+        }
+        finally
+        {
+            Console.SetOut(salidaOriginal);
+            salida.Dispose();
+        }
+    }
+
+    [Fact]
+    public void MostrarColecciones_SinColecciones_NoLanzaExcepcion()
+    {
+        Usuario usuario = new Usuario("Ana");
+
+        Exception? excepcion = Record.Exception(() => usuario.MostrarColecciones());
+
+        Assert.Null(excepcion);
+    }
 }
