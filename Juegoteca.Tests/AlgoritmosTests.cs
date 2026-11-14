@@ -20,8 +20,11 @@ public class AlgoritmosTests
     [Fact]
     public void QuickSort_ListaVacia_NoLanzaExcepcion()
     {
-        new GestorVideojuegos().QuickSort(new List<Videojuego>());
-        Assert.Empty(new List<Videojuego>());
+        List<Videojuego> lista = new List<Videojuego>();
+
+        new GestorVideojuegos().QuickSort(lista);
+
+        Assert.Empty(lista);
     }
 
     [Fact]
@@ -98,5 +101,53 @@ public class AlgoritmosTests
         List<string> original = gestor.JuegosDisponibles.Select(j => j.Titulo).ToList();
         gestor.BusquedaBinaria("Hades");
         Assert.Equal(original, gestor.JuegosDisponibles.Select(j => j.Titulo));
+    }
+
+
+    [Fact]
+    public void MergeSort_UnElemento_DevuelveListaOrdenada()
+    {
+        GestorVideojuegos gestor = new GestorVideojuegos();
+        List<Videojuego> juegos = new List<Videojuego>
+    {
+        new Videojuego("Celeste", "Maddy", 8)
+    };
+
+        List<Videojuego> resultado = gestor.MergeSort(juegos);
+
+        Assert.Single(resultado);
+        Assert.Equal(8, resultado[0].HorasJuego);
+    }
+
+    [Fact]
+    public void MergeSort_HorasRepetidas_MantieneOrdenAscendente()
+    {
+        GestorVideojuegos gestor = new GestorVideojuegos();
+        List<Videojuego> juegos = new List<Videojuego>
+    {
+        new Videojuego("A", "E", 10),
+        new Videojuego("B", "E", 10),
+        new Videojuego("C", "E", 2)
+    };
+
+        List<Videojuego> resultado = gestor.MergeSort(juegos);
+
+        Assert.Equal(new[] { 2, 10, 10 },
+            resultado.Select(j => j.HorasJuego));
+    }
+
+    [Fact]
+    public void QuickSort_UnElemento_ConservaElElemento()
+    {
+        GestorVideojuegos gestor = new GestorVideojuegos();
+        List<Videojuego> juegos = new List<Videojuego>
+    {
+        new Videojuego("Celeste", "Maddy", 8)
+    };
+
+        gestor.QuickSort(juegos);
+
+        Assert.Single(juegos);
+        Assert.Equal(8, juegos[0].HorasJuego);
     }
 }
